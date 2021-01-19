@@ -3,39 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/main_background_color"
+        android:orientation="vertical"
         tools:context=".DrivingRecordFragment">
 
         <ImageView
             android:id="@+id/logoImage"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/acca"
-            android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:srcCompat="@drawable/acca"
             tools:layout_editor_absoluteX="0dp" />
 
         <TextView
             android:id="@+id/driveRecord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:gravity="center"
             android:text="주행 기록"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
             android:textColor="@android:color/black"
             android:textSize="30sp" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_weight="10">
 
             <LinearLayout
@@ -116,9 +115,9 @@
             android:id="@+id/totalDistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="총 주행거리"
-            android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="총 주행거리"
             android:textSize="30sp" />
 
     </LinearLayout>

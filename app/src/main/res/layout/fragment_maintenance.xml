@@ -1,255 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/main_background_color"
-    tools:context="fragment.MaintenanceFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/logoImage"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/acca"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_height="match_parent"
+        android:background="@color/main_background_color"
+        android:orientation="vertical"
+        tools:context="fragment.MaintenanceFragment">
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="match_parent"
-        android:layout_height="118dp"
-        android:gravity="center"
-        android:text="안전을 위해 꼭 교체하세요!!"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:srcCompat="@drawable/acca"
+            tools:layout_editor_absoluteX="0dp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp">
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:text="안전을 위해 꼭 교체하세요!!"
+            android:textSize="20sp" />
 
-        <TableLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*">
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
 
-            <TableRow
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="엔진오일"
-                    android:textColor="@android:color/black"
-                    android:background="@color/background_color"
-                    android:textSize="20sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/alertEngineOil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:gravity="center"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_color"
+                        android:gravity="center"
+                        android:text="엔진오일"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/btn_changeEngineOil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_layout"
-                    android:text="교체"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:textSize="20sp" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/alertEngineOil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="20sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/btn_changeEngineOil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/button_layout"
+                        android:text="교체"
+                        android:textSize="20sp" />
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/TextView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="오토미션오일"
-                    android:background="@color/background_color"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/alertAutomissionOil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="TextView"
+                    <TextView
+                        android:id="@+id/TextView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_color"
+                        android:gravity="center"
+                        android:text="오토미션오일"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
 
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/alertAutomissionOil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="TextView"
 
-                <Button
-                    android:id="@+id/btn_changeAutomissionOil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_layout"
-                    android:text="교체"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:textSize="20sp" />
-            </TableRow>
+                        android:textSize="20sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/btn_changeAutomissionOil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/button_layout"
+                        android:text="교체"
+                        android:textSize="20sp" />
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="파워오일"
-                    android:background="@color/background_color"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/alertPowerOil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:gravity="center"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_color"
+                        android:gravity="center"
+                        android:text="파워오일"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/btn_changePowerOil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="교체"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/button_layout"
-                    android:textSize="20sp" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/alertPowerOil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="20sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/btn_changePowerOil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/button_layout"
+                        android:text="교체"
+                        android:textSize="20sp" />
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="브레이크오일"
-                    android:background="@color/background_color"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/alertBrakeOil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:gravity="center"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_color"
+                        android:gravity="center"
+                        android:text="브레이크오일"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/btn_changeBrakeOil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="59dp"
-                    android:background="@drawable/button_layout"
-                    android:text="교체"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:textSize="20sp" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/alertBrakeOil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="20sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/btn_changeBrakeOil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/button_layout"
+                        android:text="교체"
+                        android:textSize="20sp" />
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="브레이크패드"
-                    android:background="@color/background_color"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/alertBrakePad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:gravity="center"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_color"
+                        android:gravity="center"
+                        android:text="브레이크패드"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/btn_changeBrakePad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="교체"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/button_layout"
-                    android:textSize="20sp" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/alertBrakePad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="20sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/btn_changeBrakePad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/button_layout"
+                        android:text="교체"
+                        android:textSize="20sp" />
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="타이밍벨트"
-                    android:background="@color/background_color"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/alertTimingBelt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="TextView"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_color"
+                        android:gravity="center"
+                        android:text="타이밍벨트"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/btn_changeTimingBelt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="교체"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/button_layout"
-                    android:textSize="20sp" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/alertTimingBelt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="20sp" />
 
-        </TableLayout>
-    </ScrollView>
+                    <Button
+                        android:id="@+id/btn_changeTimingBelt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/button_layout"
+                        android:text="교체"
+                        android:textSize="20sp" />
+                </TableRow>
 
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/button_layout"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="HOME"
-        android:textSize="20dp" />
+            </TableLayout>
+        </ScrollView>
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_layout"
+            android:text="HOME"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+</layout>
