@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="halla.icsw.acca_kotlin.fragment.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_maintenanceFragment"
+            app:destination="@id/maintenanceFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_oilRecordFragment"
+            app:destination="@id/oilRecordFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_drivingRecordFragment"
+            app:destination="@id/drivingRecordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/drivingRecordFragment"
+        android:name="halla.icsw.acca_kotlin.fragment.DrivingRecordFragment"
+        android:label="fragment_driving_record"
+        tools:layout="@layout/fragment_driving_record" />
+    <fragment
+        android:id="@+id/maintenanceFragment"
+        android:name="halla.icsw.acca_kotlin.fragment.MaintenanceFragment"
+        android:label="fragment_maintenance"
+        tools:layout="@layout/fragment_maintenance" />
+    <fragment
+        android:id="@+id/oilRecordFragment"
+        android:name="halla.icsw.acca_kotlin.fragment.OilRecordFragment"
+        android:label="fragment_oil_record"
+        tools:layout="@layout/fragment_oil_record" />
+</navigation>
