@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:background="@color/main_background_color"
         android:orientation="vertical"
+
         tools:context="fragment.MaintenanceFragment">
 
         <ImageView
@@ -22,11 +23,12 @@
         <TextView
             android:id="@+id/textView13"
             android:layout_width="match_parent"
-            android:layout_height="118dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
             android:text="안전을 위해 꼭 교체하세요!!"
+            android:textColor="#5E6675"
             android:textSize="20sp" />
 
         <ScrollView
@@ -38,7 +40,8 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="*">
+                android:stretchColumns="*"
+                android:layout_marginTop="100dp">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -242,17 +245,36 @@
             </TableLayout>
         </ScrollView>
 
-        <Button
-            android:id="@+id/btn_back"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/button_layout"
-            android:text="HOME"
-            android:textSize="20dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom">
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_layout"
+                android:text="HOME"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/dummyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="총 주유 금액"
+                android:textColor="#5E6675"
+                android:textSize="30sp"
+                android:visibility="invisible"/>
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

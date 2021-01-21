@@ -11,13 +11,25 @@
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_maintenanceFragment"
-            app:destination="@id/maintenanceFragment" />
+            app:destination="@id/maintenanceFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
             android:id="@+id/action_mainFragment_to_oilRecordFragment"
-            app:destination="@id/oilRecordFragment" />
+            app:destination="@id/oilRecordFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
             android:id="@+id/action_mainFragment_to_drivingRecordFragment"
-            app:destination="@id/drivingRecordFragment" />
+            app:destination="@id/drivingRecordFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/drivingRecordFragment"
