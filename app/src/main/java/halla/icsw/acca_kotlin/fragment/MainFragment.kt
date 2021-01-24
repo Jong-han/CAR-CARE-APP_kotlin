@@ -1,24 +1,24 @@
 package halla.icsw.acca_kotlin.fragment
 
-import android.content.Context
-import android.location.LocationManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import halla.icsw.acca_kotlin.MyViewModel
 import halla.icsw.acca_kotlin.R
-import halla.icsw.acca_kotlin.databinding.FragmentDrivingRecordBinding
 import halla.icsw.acca_kotlin.databinding.FragmentMainBinding
 
 class MainFragment : Fragment(), View.OnClickListener {
     lateinit var binding: FragmentMainBinding
     lateinit var navController: NavController
+    val mMyViewModel: MyViewModel by viewModels()
+//    val ids = arrayListOf<Int>(R.id.action_mainFragment_to_drivingRecordFragment, R.id.action_mainFragment_to_oilRecordFragment, R.id.action_mainFragment_to_maintenanceFragment)
 
     companion object {
         var mToast: Toast? = null
@@ -41,27 +41,35 @@ class MainFragment : Fragment(), View.OnClickListener {
         binding.btnStart.setOnClickListener(this)
         binding.btnEnd.setOnClickListener(this)
 
-
-        val lm = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
+        binding.lifecycleOwner = this
+        binding.viewModel = mMyViewModel
 
     }
 
     override fun onClick(view: View?) {
         when (view) {
             binding.btnStart -> {
-                makeToast("시작")
+                makeToast("주행을 시작합니다.")
+                mMyViewModel.startDrive()
             }
             binding.btnEnd -> {
-                makeToast("종료")
+                if (mMyViewModel.isStart) {
+                    makeToast("주행을 종료합니다.")
+                    mMyViewModel.endDrive()
+                } else
+                    makeToast("주행이 시작되지 않았습니다.")
             }
+
+            binding.btnDrive -> navController.navigate(R.id.action_mainFragment_to_drivingRecordFragment)
+            binding.btnMaintenance -> navController.navigate(R.id.action_mainFragment_to_maintenanceFragment)
+            binding.btnOil -> navController.navigate(R.id.action_mainFragment_to_oilRecordFragment)
         }
     }
 
     fun makeToast(str: String) {
         if (mToast == null) {
             mToast = Toast.makeText(context, str, Toast.LENGTH_SHORT)
-        }else
+        } else
             mToast?.setText(str)
         mToast?.show()
     }
