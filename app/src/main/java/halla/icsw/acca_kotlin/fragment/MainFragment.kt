@@ -60,7 +60,10 @@ class MainFragment : Fragment(), View.OnClickListener {
                     makeToast("주행이 시작되지 않았습니다.")
             }
 
-            binding.btnDrive -> navController.navigate(R.id.action_mainFragment_to_drivingRecordFragment)
+            binding.btnDrive -> {
+                navController.navigate(R.id.action_mainFragment_to_drivingRecordFragment)
+                mMyViewModel.refreshDriveRecord()
+            }
             binding.btnMaintenance -> navController.navigate(R.id.action_mainFragment_to_maintenanceFragment)
             binding.btnOil -> navController.navigate(R.id.action_mainFragment_to_oilRecordFragment)
         }

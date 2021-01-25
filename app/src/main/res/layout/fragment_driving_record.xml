@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="halla.icsw.acca_kotlin.MyViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -77,22 +83,22 @@
 
                     <TextView
                         android:id="@+id/driveDate"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="TextView"
+                        android:text="@{viewModel.driveDate}"
                         android:textColor="@android:color/black"
                         android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/driveDistance"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="TextView"
+                        android:text="@{viewModel.driveDistance.toString()}"
                         android:textColor="@android:color/black"
                         android:textSize="17sp" />
                 </LinearLayout>
@@ -117,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:text="총 주행거리"
+            android:text="@{`총 주행거리 : ` + viewModel.totalDistance.toString()}"
             android:textColor="#5E6675"
             android:textSize="30sp" />
 
