@@ -49,7 +49,8 @@
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
@@ -59,16 +60,18 @@
 
                     <TextView
                         android:id="@+id/alertEngineOil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="TextView"
                         android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/btn_changeEngineOil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/button_layout"
@@ -82,7 +85,8 @@
 
                     <TextView
                         android:id="@+id/TextView3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
@@ -92,8 +96,9 @@
 
                     <TextView
                         android:id="@+id/alertAutomissionOil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="TextView"
 
@@ -101,8 +106,9 @@
 
                     <Button
                         android:id="@+id/btn_changeAutomissionOil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/button_layout"
@@ -116,7 +122,8 @@
 
                     <TextView
                         android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
@@ -126,16 +133,18 @@
 
                     <TextView
                         android:id="@+id/alertPowerOil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="TextView"
                         android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/btn_changePowerOil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/button_layout"
@@ -149,7 +158,8 @@
 
                     <TextView
                         android:id="@+id/textView7"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
@@ -159,16 +169,18 @@
 
                     <TextView
                         android:id="@+id/alertBrakeOil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="TextView"
                         android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/btn_changeBrakeOil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/button_layout"
@@ -182,7 +194,8 @@
 
                     <TextView
                         android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
@@ -192,16 +205,18 @@
 
                     <TextView
                         android:id="@+id/alertBrakePad"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="TextView"
                         android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/btn_changeBrakePad"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/button_layout"
@@ -215,7 +230,8 @@
 
                     <TextView
                         android:id="@+id/textView11"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
@@ -225,16 +241,18 @@
 
                     <TextView
                         android:id="@+id/alertTimingBelt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="TextView"
                         android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/btn_changeTimingBelt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/button_layout"

@@ -11,14 +11,14 @@ import androidx.navigation.Navigation
 import halla.icsw.acca_kotlin.R
 import halla.icsw.acca_kotlin.databinding.FragmentMaintenanceBinding
 
-class MaintenanceFragment : Fragment() {
+class MaintenanceFragment : Fragment(), View.OnClickListener {
 
     lateinit var binding: FragmentMaintenanceBinding
-    lateinit var navController : NavController
+    lateinit var navController: NavController
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maintenance, container, false)
         return binding.root
@@ -29,6 +29,30 @@ class MaintenanceFragment : Fragment() {
         navController = Navigation.findNavController(view)
         binding.btnBack.setOnClickListener {
             navController.popBackStack()
+        }
+        binding.alertAutomissionOil.setOnClickListener(this)
+        binding.alertBrakeOil.setOnClickListener(this)
+        binding.alertBrakePad.setOnClickListener(this)
+        binding.alertEngineOil.setOnClickListener(this)
+        binding.alertPowerOil.setOnClickListener(this)
+        binding.alertTimingBelt.setOnClickListener(this)
+
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            binding.alertAutomissionOil -> {
+            }
+            binding.alertBrakeOil -> {
+            }
+            binding.alertBrakePad -> {
+            }
+            binding.alertEngineOil -> {
+            }
+            binding.alertPowerOil -> {
+            }
+            binding.alertTimingBelt -> {
+            }
         }
     }
 

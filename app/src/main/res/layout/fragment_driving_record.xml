@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{viewModel.driveDistance.toString()}"
+                        android:text="@{viewModel.driveDistance}"
                         android:textColor="@android:color/black"
                         android:textSize="17sp" />
                 </LinearLayout>
