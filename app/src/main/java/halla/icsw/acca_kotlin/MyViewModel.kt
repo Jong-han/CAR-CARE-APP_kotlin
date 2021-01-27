@@ -56,17 +56,10 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     var location: Location? = null // 거리측정에 사용되는 위치정보
     var isStart: Boolean = false // 주행시작 버튼이 눌렸는지에 대한 플래그
 
-    // **** DATABASE **** //
-    var db = Room.databaseBuilder(
-            application.applicationContext,
-            MyDataBase::class.java,
-            "DataBase.db"
-    ).allowMainThreadQueries().build()
-
     private val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
     init {
-        totalDistance.value = db.driveDAO().getTotalDistance()
+        totalDistance.value = Repository.db.driveDAO().getTotalDistance()
         curDistance.value = 0.0
         refreshParts()
         setDriveInfo()
@@ -94,8 +87,8 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
         var date = Date(timeNow)
         var sdf = SimpleDateFormat("yyyy-MM-dd")
         var now = sdf.format(date)
-        curDistance.value?.let { DriveEntity(now, it) }?.let { db.driveDAO().insert(it) }
-        totalDistance.value = db.driveDAO().getTotalDistance()
+        curDistance.value?.let { DriveEntity(now, it) }?.let { Repository.db.driveDAO().insert(it) }
+        totalDistance.value = Repository.db.driveDAO().getTotalDistance()
         curDistance.value = 0.0
         location = null
         isStart = false
@@ -162,7 +155,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
 
     // **** 주행 정보 불러오기 **** //
     fun setDriveInfo() {
-        var dataList = db.driveDAO().getAll()
+        var dataList = Repository.db.driveDAO().getAll()
         var cnt = 1
         var str_date = ""
         var str_distance = ""
