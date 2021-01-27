@@ -1,11 +1,13 @@
 package halla.icsw.acca_kotlin.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -18,15 +20,18 @@ class MainFragment : Fragment(), View.OnClickListener {
     lateinit var binding: FragmentMainBinding
     lateinit var navController: NavController
     val mMyViewModel: MyViewModel by viewModels()
-//    val ids = arrayListOf<Int>(R.id.action_mainFragment_to_drivingRecordFragment, R.id.action_mainFragment_to_oilRecordFragment, R.id.action_mainFragment_to_maintenanceFragment)
+
+    //    val ids = arrayListOf<Int>(R.id.action_mainFragment_to_drivingRecordFragment, R.id.action_mainFragment_to_oilRecordFragment, R.id.action_mainFragment_to_maintenanceFragment)
+    private lateinit var callback: OnBackPressedCallback
+    var mBackWait: Long = 0
 
     companion object {
         var mToast: Toast? = null
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         return binding.root
@@ -70,6 +75,21 @@ class MainFragment : Fragment(), View.OnClickListener {
             }
             binding.btnOil -> navController.navigate(R.id.action_mainFragment_to_oilRecordFragment)
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (System.currentTimeMillis() - mBackWait >= 2000) {
+                    mBackWait = System.currentTimeMillis()
+                    makeToast("뒤로가기를 한 번 더 누르면 종료됩니다.")
+                } else {
+                    activity?.finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
     fun makeToast(str: String) {
