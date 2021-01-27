@@ -1,13 +1,17 @@
 package halla.icsw.acca_kotlin.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import halla.icsw.acca_kotlin.MyViewModel
 import halla.icsw.acca_kotlin.R
 import halla.icsw.acca_kotlin.databinding.FragmentMaintenanceBinding
 
@@ -15,6 +19,7 @@ class MaintenanceFragment : Fragment(), View.OnClickListener {
 
     lateinit var binding: FragmentMaintenanceBinding
     lateinit var navController: NavController
+    val mMyViewModel: MyViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -27,31 +32,48 @@ class MaintenanceFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+        binding.lifecycleOwner = this
+        binding.viewModel = mMyViewModel
         binding.btnBack.setOnClickListener {
             navController.popBackStack()
         }
-        binding.alertAutomissionOil.setOnClickListener(this)
-        binding.alertBrakeOil.setOnClickListener(this)
-        binding.alertBrakePad.setOnClickListener(this)
-        binding.alertEngineOil.setOnClickListener(this)
-        binding.alertPowerOil.setOnClickListener(this)
-        binding.alertTimingBelt.setOnClickListener(this)
+        binding.btnChangeAutomissionOil.setOnClickListener(this)
+        binding.btnChangeBrakeOil.setOnClickListener(this)
+        binding.btnChangeBrakePad.setOnClickListener(this)
+        binding.btnChangeEngineOil.setOnClickListener(this)
+        binding.btnChangePowerOil.setOnClickListener(this)
+        binding.btnChangeTimingBelt.setOnClickListener(this)
+
+//        mMyViewModel.engineOil.observe(viewLifecycleOwner, Observer {
+//            var str = it.remainingDistance.toString()
+//            binding.alertEngineOil.text = str
+//        })
+//
+//        mMyViewModel.engineOilColor.observe(viewLifecycleOwner, Observer {
+//            binding.alertEngineOil.
+//        })
 
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            binding.alertAutomissionOil -> {
+            binding.btnChangeAutomissionOil -> {
+                mMyViewModel.calculateCycle("AutoOil")
             }
-            binding.alertBrakeOil -> {
+            binding.btnChangeBrakeOil -> {
+                mMyViewModel.calculateCycle("BrakeOil")
             }
-            binding.alertBrakePad -> {
+            binding.btnChangeBrakePad -> {
+                mMyViewModel.calculateCycle("BrakePad")
             }
-            binding.alertEngineOil -> {
+            binding.btnChangeEngineOil -> {
+                mMyViewModel.calculateCycle("EngineOil")
             }
-            binding.alertPowerOil -> {
+            binding.btnChangePowerOil -> {
+                mMyViewModel.calculateCycle("PowerOil")
             }
-            binding.alertTimingBelt -> {
+            binding.btnChangeTimingBelt -> {
+                mMyViewModel.calculateCycle("TimingBelt")
             }
         }
     }

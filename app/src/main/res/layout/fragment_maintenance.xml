@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="halla.icsw.acca_kotlin.MyViewModel" />
+        <import type="android.graphics.Color"/>
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -61,10 +68,11 @@
                     <TextView
                         android:id="@+id/alertEngineOil"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="TextView"
+                        android:text="@{viewModel.engineOilDistance.toString()}"
+                        android:textColor="@{(viewModel.engineOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.engineOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
                     <Button
@@ -97,11 +105,11 @@
                     <TextView
                         android:id="@+id/alertAutomissionOil"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="TextView"
-
+                        android:text="@{viewModel.autoOilDistance.toString()}"
+                        android:textColor="@{(viewModel.autoOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.autoOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
                     <Button
@@ -134,10 +142,11 @@
                     <TextView
                         android:id="@+id/alertPowerOil"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="TextView"
+                        android:text="@{viewModel.powerOilDistance.toString()}"
+                        android:textColor="@{(viewModel.powerOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.powerOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
                     <Button
@@ -170,10 +179,11 @@
                     <TextView
                         android:id="@+id/alertBrakeOil"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="TextView"
+                        android:text="@{viewModel.brakeOilDistance.toString()}"
+                        android:textColor="@{(viewModel.brakeOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.brakeOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
                     <Button
@@ -206,10 +216,11 @@
                     <TextView
                         android:id="@+id/alertBrakePad"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="TextView"
+                        android:text="@{viewModel.brakePadDistance.toString()}"
+                        android:textColor="@{(viewModel.brakePad.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.brakePad.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
                     <Button
@@ -245,7 +256,8 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="TextView"
+                        android:text="@{viewModel.timingBeltDistance.toString()}"
+                        android:textColor="@{(viewModel.timingBelt.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.engineOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
                     <Button

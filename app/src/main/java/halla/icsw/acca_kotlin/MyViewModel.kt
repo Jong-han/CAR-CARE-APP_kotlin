@@ -13,6 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import halla.icsw.acca_kotlin.DB.DriveEntity
 import halla.icsw.acca_kotlin.DB.MyDataBase
+import halla.icsw.acca_kotlin.DB.Repository
 import halla.icsw.acca_kotlin.Maintenance.Cycle
 import halla.icsw.acca_kotlin.Maintenance.PartData
 import java.text.SimpleDateFormat
@@ -35,13 +36,21 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     var brakePad = MutableLiveData<PartData>()
     var timingBelt = MutableLiveData<PartData>()
 
+    var engineOilDistance = MutableLiveData<Double>()
+    var autoOilDistance = MutableLiveData<Double>()
+    var powerOilDistance = MutableLiveData<Double>()
+    var brakeOilDistance = MutableLiveData<Double>()
+    var brakePadDistance = MutableLiveData<Double>()
+    var timingBeltDistance = MutableLiveData<Double>()
+
+
     // **** 각 부품들에 대한 Cycle 객체 **** //
-    val engineOilCycle = Cycle(40000.0)
-    val autoOilCycle = Cycle(40000.0)
-    val powerOilCycle = Cycle(40000.0)
-    val brakeOilCycle = Cycle(40000.0)
-    val brakePadCycle = Cycle(20000.0)
-    val timingBeltCycle = Cycle(80000.0)
+    private val engineOilCycle = Cycle(40000.0)
+    private val autoOilCycle = Cycle(40000.0)
+    private val powerOilCycle = Cycle(40000.0)
+    private val brakeOilCycle = Cycle(40000.0)
+    private val brakePadCycle = Cycle(20000.0)
+    private val timingBeltCycle = Cycle(80000.0)
 
     // **** 거리측정을 위한 데이터 **** //
     var location: Location? = null // 거리측정에 사용되는 위치정보
@@ -54,11 +63,12 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
             "DataBase.db"
     ).allowMainThreadQueries().build()
 
-    val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    private val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
     init {
         totalDistance.value = db.driveDAO().getTotalDistance()
         curDistance.value = 0.0
+        refreshParts()
         setDriveInfo()
     }
 
@@ -92,6 +102,64 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
 
     }
 
+    private fun calculatePart2(partName: String, partCycle: Cycle): PartData? { // 남은 거리를 계산하는 메소드
+        var lastDistance = totalDistance.value?.minus(Repository.mMySharedPreferences.getDistance(partName, 0f))
+        return lastDistance?.let { partCycle.getPartData(it) }
+    }
+
+    fun refreshParts(){
+        engineOil.value = calculatePart2("EngineOil", engineOilCycle)
+        engineOilDistance.value = engineOil.value!!.remainingDistance
+        autoOil.value = calculatePart2("AutoOil", autoOilCycle)
+        autoOilDistance.value = autoOil.value!!.remainingDistance
+        powerOil.value = calculatePart2("PowerOil", powerOilCycle)
+        powerOilDistance.value = powerOil.value!!.remainingDistance
+        brakeOil.value = calculatePart2("BrakeOil", brakeOilCycle)
+        brakeOilDistance.value = brakeOil.value!!.remainingDistance
+        brakePad.value = calculatePart2("BrakePad", brakePadCycle)
+        brakePadDistance.value = brakePad.value!!.remainingDistance
+        timingBelt.value = calculatePart2("TimingBelt", timingBeltCycle)
+        timingBeltDistance.value = timingBelt.value!!.remainingDistance
+    }
+
+    fun calculateCycle(partName: String) {  // 교체버튼이 눌렸을 때,
+        when (partName) {
+            "EngineOil" -> {
+                // 총 주행거리를 sp에 저장
+                totalDistance.value?.let { Repository.mMySharedPreferences.setDistance(partName, it) }
+                // 저장한 거리를 기반으로 남은 거리와 상태를 계산 -> 무조건 PartData(0,2) 이 반환됨
+                // 반환된 PartData를 LivaData에 적용
+                engineOil.value = calculatePart2(partName, engineOilCycle)
+                engineOilDistance.value = engineOil.value!!.remainingDistance
+            }
+            "AutoOil" -> {
+                totalDistance.value?.let { Repository.mMySharedPreferences.setDistance(partName, it) }
+                autoOil.value = calculatePart2(partName, autoOilCycle)
+                autoOilDistance.value = autoOil.value!!.remainingDistance
+            }
+            "PowerOil" -> {
+                totalDistance.value?.let { Repository.mMySharedPreferences.setDistance(partName, it) }
+                powerOil.value = calculatePart2(partName, powerOilCycle)
+                powerOilDistance.value = powerOil.value!!.remainingDistance
+            }
+            "BrakeOil" -> {
+                totalDistance.value?.let { Repository.mMySharedPreferences.setDistance(partName, it) }
+                brakeOil.value = calculatePart2(partName, brakeOilCycle)
+                brakeOilDistance.value = brakeOil.value!!.remainingDistance
+            }
+            "BrakePad" -> {
+                totalDistance.value?.let { Repository.mMySharedPreferences.setDistance(partName, it) }
+                brakePad.value = calculatePart2(partName, brakePadCycle)
+                brakePadDistance.value = brakePad.value!!.remainingDistance
+            }
+            "TimingBelt" -> {
+                totalDistance.value?.let { Repository.mMySharedPreferences.setDistance(partName, it) }
+                timingBelt.value = calculatePart2(partName, timingBeltCycle)
+                timingBeltDistance.value = timingBelt.value!!.remainingDistance
+            }
+        }
+    }
+
     // **** 주행 정보 불러오기 **** //
     fun setDriveInfo() {
         var dataList = db.driveDAO().getAll()
@@ -99,11 +167,11 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
         var str_date = ""
         var str_distance = ""
         for (i in dataList) {
-            if (cnt != dataList.size){
+            if (cnt != dataList.size) {
                 str_date += (i.driveDate + "\n")
                 str_distance += (i.distance.toString() + " Km\n")
-                cnt++}
-            else{
+                cnt++
+            } else {
                 str_date += i.driveDate
                 str_distance += (i.distance.toString() + " Km")
                 cnt = 0

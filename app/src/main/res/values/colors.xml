@@ -15,7 +15,8 @@
     <color name = "colorText">#000000</color>
     <color name = "button_color">#E6FFFF</color>
     <color name = "button_color2">#68888E</color>
-    <color name = "background_color" >#C1D2CE</color>
-    <color name = "background_color2">#9BB6B1</color>
+    <color name = "background_color" >#c9cbff</color>
+    <color name = "background_color2">#949cdf</color>
+    <color name = "background_color3">#eff8ff</color>
     <color name="main_background_color">#FAFAFA</color>
 </resources>

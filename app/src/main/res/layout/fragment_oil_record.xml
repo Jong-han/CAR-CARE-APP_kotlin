@@ -18,12 +18,14 @@
             tools:layout_editor_absoluteX="0dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"/>
+
         <TextView
             android:id="@+id/driveRecord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="주유 기록"
             android:textColor="@android:color/black"
@@ -63,6 +65,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@color/background_color"
                         android:gravity="center"
                         android:text="주유 금액"
                         android:textColor="@android:color/black"
@@ -92,6 +95,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="TextView"
+                        android:background="@color/background_color3"
                         android:textColor="@android:color/black"
                         android:textSize="17sp" />
                 </LinearLayout>

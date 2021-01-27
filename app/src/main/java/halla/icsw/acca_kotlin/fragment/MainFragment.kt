@@ -64,7 +64,10 @@ class MainFragment : Fragment(), View.OnClickListener {
                 navController.navigate(R.id.action_mainFragment_to_drivingRecordFragment)
                 mMyViewModel.setDriveInfo()
             }
-            binding.btnMaintenance -> navController.navigate(R.id.action_mainFragment_to_maintenanceFragment)
+            binding.btnMaintenance -> {
+                navController.navigate(R.id.action_mainFragment_to_maintenanceFragment)
+                mMyViewModel.refreshParts()
+            }
             binding.btnOil -> navController.navigate(R.id.action_mainFragment_to_oilRecordFragment)
         }
     }
