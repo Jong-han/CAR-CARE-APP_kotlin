@@ -30,6 +30,6 @@ class LoadingFragment : Fragment() {
     }
     fun loading(){
         val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({navController.navigate(R.id.action_loadingFragment_to_mainFragment)}, 2000)
+        handler.postDelayed({navController.navigate(R.id.action_loadingFragment_to_mainFragment)}, 1000)
     }
 }
