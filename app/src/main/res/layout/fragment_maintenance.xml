@@ -71,7 +71,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{viewModel.engineOilDistance.toString()}"
+                        android:text="@{Double.toString(viewModel.engineOil.remainingDistance)}"
                         android:textColor="@{(viewModel.engineOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.engineOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -108,7 +108,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{viewModel.autoOilDistance.toString()}"
+                        android:text="@{Double.toString(viewModel.autoOil.remainingDistance)}"
                         android:textColor="@{(viewModel.autoOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.autoOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -145,7 +145,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{viewModel.powerOilDistance.toString()}"
+                        android:text="@{Double.toString(viewModel.powerOil.remainingDistance)}"
                         android:textColor="@{(viewModel.powerOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.powerOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -182,7 +182,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{viewModel.brakeOilDistance.toString()}"
+                        android:text="@{Double.toString(viewModel.brakeOil.remainingDistance)}"
                         android:textColor="@{(viewModel.brakeOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.brakeOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -219,7 +219,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{viewModel.brakePadDistance.toString()}"
+                        android:text="@{Double.toString(viewModel.brakePad.remainingDistance)}"
                         android:textColor="@{(viewModel.brakePad.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.brakePad.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -253,10 +253,10 @@
                     <TextView
                         android:id="@+id/alertTimingBelt"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{viewModel.timingBeltDistance.toString()}"
+                        android:text="@{Double.toString(viewModel.timingBelt.remainingDistance)}"
                         android:textColor="@{(viewModel.timingBelt.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.engineOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
