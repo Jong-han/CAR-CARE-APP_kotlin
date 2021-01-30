@@ -18,8 +18,9 @@ class SMSReceiver : BroadcastReceiver() {
             Toast.makeText(context, "메시지 수신", Toast.LENGTH_SHORT).show()
             val bundle = intent.extras
             var message = "" // SMS 저장
-            var totalPrice = ""
-            var today = ""
+            var price = 0 // 유가
+            var totalPrice = 0 // 주유 가격
+            var today = "" // 주유 날짜
 
 
             if (bundle != null) { // 수신된 내용이 있으면
@@ -51,12 +52,14 @@ class SMSReceiver : BroadcastReceiver() {
                     var messageArray = message.split("\n", " ")
                     for (index in messageArray) {
                         if (index.contains(",")) {
-                            totalPrice = index
+                            var temp_valueindex = index.slice(IntRange(0, index.indexOf("원")))
+                            totalPrice = temp_valueindex.replace(",","").replace("원","").toInt()
                             break
                         }
                     }
                 }
-                Log.d("메시지 처리", today + " " + totalPrice.slice(IntRange(0, totalPrice.indexOf("원"))))
+                Repository.db.oilDAO().insert(OilEntity(today,price,totalPrice))
+                Log.d("메시지 처리", today + " " + totalPrice)
             }
         }
     }

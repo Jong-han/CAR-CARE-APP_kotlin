@@ -91,8 +91,8 @@
 
                     <TextView
                         android:id="@+id/oilDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@color/background_color"
                         android:gravity="center"
@@ -102,8 +102,8 @@
 
                     <TextView
                         android:id="@+id/oilPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@color/background_color3"
                         android:gravity="center"
@@ -113,8 +113,8 @@
 
                     <TextView
                         android:id="@+id/totalOilPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@color/background_color"
                         android:gravity="center"
