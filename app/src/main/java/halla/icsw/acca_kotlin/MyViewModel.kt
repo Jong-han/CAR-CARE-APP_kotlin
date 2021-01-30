@@ -130,6 +130,16 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
         driveDistance.value = str_distance
     }
 
+//    private fun setStatus(){
+//        var element_1 = engineOil.value?.status
+//        var element_2 = autoOil.value?.status
+//        var element_3 = brakeOil.value?.status
+//        var element_4 = brakePad.value?.status
+//        var element_5 = timingBelt.value?.status
+//        var element_6 = powerOil.value?.status
+//        statusList.value = Array<Any>(6,)
+//    }
+
     // **** 위치 정보가 변경될 때마다 실행됨 **** //
     override fun onLocationChanged(newlocation: Location) {
         if (location != null) {
