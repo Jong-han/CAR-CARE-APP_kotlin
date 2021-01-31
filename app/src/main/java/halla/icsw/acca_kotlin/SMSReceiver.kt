@@ -38,11 +38,18 @@ class SMSReceiver : BroadcastReceiver() {
 
         val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
+        val isGPSEnabled: Boolean = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        val isNetworkEnabled: Boolean = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
         if (intent.action.equals("android.provider.Telephony.SMS_RECEIVED")) {
-            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-            if (location != null) {
+            when{
+                isGPSEnabled -> location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                isNetworkEnabled -> location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+                else -> Toast.makeText(context, "Provider 비활성", Toast.LENGTH_SHORT).show()
+            }
 
+
+            if (location != null) {
                 Toast.makeText(context, "메시지 수신", Toast.LENGTH_SHORT).show()
                 val bundle = intent.extras
                 var message = "" // SMS 저장
@@ -110,7 +117,8 @@ class SMSReceiver : BroadcastReceiver() {
                                 }
                             })
                 }
-            }
+            }else
+                Toast.makeText(context, "위치정보 수신 안됨!!", Toast.LENGTH_SHORT).show()
         }
     }
 }
