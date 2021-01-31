@@ -49,13 +49,13 @@ class OilRecordFragment : Fragment() {
                     temp_date += i.OilStation + "\n"
                     temp_totalPrice += dec.format(i.totalPrice) + "원\n"
                     temp_price += dec.format(i.Price) + "원\n"
-                    temp_L = String.format("%.2f",(i.totalPrice.toDouble()/i.Price.toDouble())) + "L\n"
+                    temp_L += String.format("%.2f",(i.totalPrice.toDouble()/i.Price.toDouble())) + "L\n"
                     cnt++
                 } else {
                     temp_date += i.OilStation
                     temp_totalPrice += dec.format(i.totalPrice) + "원"
                     temp_price +=  dec.format(i.Price) + "원"
-                    temp_L = String.format("%.2f",(i.totalPrice.toDouble()/i.Price.toDouble())) + "L"
+                    temp_L += String.format("%.2f",(i.totalPrice.toDouble()/i.Price.toDouble())) + "L"
                     cnt = 0
                 }
             }
