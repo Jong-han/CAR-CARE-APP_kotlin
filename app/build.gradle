@@ -65,4 +65,12 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
+
+
+    //레트로핏
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //gson 컨버터
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    //레트로핏 로깅 인터셉터
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 }

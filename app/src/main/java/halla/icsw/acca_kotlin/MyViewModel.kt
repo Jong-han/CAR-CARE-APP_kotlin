@@ -1,4 +1,4 @@
-package halla.icsw.acca_kotlin
+    package halla.icsw.acca_kotlin
 
 import android.Manifest
 import android.app.Application
@@ -118,33 +118,23 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
         for (i in dataList) {
             if (cnt != dataList.size) {
                 str_date += (i.driveDate + "\n")
-                str_distance += (i.distance.toString() + " Km\n")
+                str_distance += (String.format("%.3f",i.distance) + " km\n")
                 cnt++
             } else {
                 str_date += i.driveDate
-                str_distance += (i.distance.toString() + " Km")
+                str_distance += (String.format("%.3f",i.distance) + " km")
                 cnt = 0
             }
         }
         driveDate.value = str_date
         driveDistance.value = str_distance
     }
-
-//    private fun setStatus(){
-//        var element_1 = engineOil.value?.status
-//        var element_2 = autoOil.value?.status
-//        var element_3 = brakeOil.value?.status
-//        var element_4 = brakePad.value?.status
-//        var element_5 = timingBelt.value?.status
-//        var element_6 = powerOil.value?.status
-//        statusList.value = Array<Any>(6,)
-//    }
-
+    
     // **** 위치 정보가 변경될 때마다 실행됨 **** //
     override fun onLocationChanged(newlocation: Location) {
         if (location != null) {
             var tempDistance = round(newlocation.distanceTo(location).toDouble())
-            curDistance.value = curDistance.value?.plus(tempDistance)
+            curDistance.value = curDistance.value?.plus(tempDistance.div(1000))
         }
         location = newlocation
     }

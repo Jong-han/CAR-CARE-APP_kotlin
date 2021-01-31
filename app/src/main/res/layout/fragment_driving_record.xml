@@ -126,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:text="@{`총 주행거리 : ` + viewModel.totalDistance.toString()}"
+            android:text="@{`총 주행거리 : ` + String.format(`%.3f`,viewModel.totalDistance) + ` km`}"
             android:textColor="#5E6675"
             android:textSize="30sp" />
 

@@ -48,11 +48,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*"
-                android:layout_marginTop="100dp">
+                android:layout_marginTop="80dp">
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/k"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_color2"
+                        android:gravity="center"
+                        android:text="소모품"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/hghghjgh"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_color"
+                        android:gravity="center"
+                        android:text="남은 거리"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/hghghgh"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="\n"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
 
                     <TextView
                         android:id="@+id/textView"
@@ -71,7 +107,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{Double.toString(viewModel.engineOil.remainingDistance)}"
+                        android:text="@{Double.toString(viewModel.engineOil.remainingDistance) + ` km`}"
                         android:textColor="@{(viewModel.engineOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.engineOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -108,7 +144,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{Double.toString(viewModel.autoOil.remainingDistance)}"
+                        android:text="@{Double.toString(viewModel.autoOil.remainingDistance)+ ` km`}"
                         android:textColor="@{(viewModel.autoOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.autoOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -145,7 +181,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{Double.toString(viewModel.powerOil.remainingDistance)}"
+                        android:text="@{Double.toString(viewModel.powerOil.remainingDistance)+ ` km`}"
                         android:textColor="@{(viewModel.powerOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.powerOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -182,7 +218,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{Double.toString(viewModel.brakeOil.remainingDistance)}"
+                        android:text="@{Double.toString(viewModel.brakeOil.remainingDistance)+ ` km`}"
                         android:textColor="@{(viewModel.brakeOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.brakeOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -219,7 +255,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{Double.toString(viewModel.brakePad.remainingDistance)}"
+                        android:text="@{Double.toString(viewModel.brakePad.remainingDistance)+ ` km`}"
                         android:textColor="@{(viewModel.brakePad.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.brakePad.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
@@ -256,7 +292,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{Double.toString(viewModel.timingBelt.remainingDistance)}"
+                        android:text="@{Double.toString(viewModel.timingBelt.remainingDistance)+ ` km`}"
                         android:textColor="@{(viewModel.timingBelt.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.engineOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 

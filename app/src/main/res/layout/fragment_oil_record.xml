@@ -82,6 +82,17 @@
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
+                    <TextView
+                        android:id="@+id/asdfdsafg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/background_color"
+                        android:gravity="center"
+                        android:text="주유량"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -117,6 +128,17 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@color/background_color"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textColor="@android:color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/oilL"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/background_color3"
                         android:gravity="center"
                         android:text="TextView"
                         android:textColor="@android:color/black"
