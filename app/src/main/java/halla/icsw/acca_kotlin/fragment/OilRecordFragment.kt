@@ -95,10 +95,11 @@ class OilRecordFragment : Fragment() {
             var dialog_OilPrice = dialogView.findViewById<EditText>(R.id.dialog_OilPrice)
             dialogBuilder.setView(dialogView)
                 .setPositiveButton("입력") { dialogInterface, i ->
-                    mMyViewModel.insertOilSelf(
-                        dialog_OilPrice.text.toString().toInt(),
-                        dialog_totalOilPrice.text.toString().toInt()
-                    )
+                    if (dialog_OilPrice.text.toString() != "" && dialog_totalOilPrice.text.toString() != "")
+                        mMyViewModel.insertOilSelf(
+                            dialog_OilPrice.text.toString().toInt(),
+                            dialog_totalOilPrice.text.toString().toInt()
+                        )
                 }
                 .setNegativeButton("취소") { dialogInterface, i ->
                 }
@@ -119,7 +120,12 @@ class OilRecordFragment : Fragment() {
             })
 //            if(oil != 0.0)
             message =
-                "\n주행거리 : ${String.format("%.3f",distance)} km\n주유량 : ${String.format("%.2f",oil)} L\n연비 : $efficiency km/L\n\n연비가 정확하지 않은가요?\n연비는 연료를 사용할 수록 정확해집니다."
+                "\n주행거리 : ${String.format("%.3f", distance)} km\n주유량 : ${
+                    String.format(
+                        "%.2f",
+                        oil
+                    )
+                } L\n연비 : $efficiency km/L\n\n연비가 정확하지 않은가요?\n연비는 연료를 사용할 수록 정확해집니다."
             var dialogBuilder = AlertDialog.Builder(context)
                 .setTitle("연비")
                 .setMessage(message)

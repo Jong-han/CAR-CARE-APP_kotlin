@@ -178,11 +178,6 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
         Repository.mMySharedPreferences.setAfterCheckDistance("D",tempDistance)
     }
 
-    fun removeCheckData() {
-        Repository.mMySharedPreferences.setAfterCheckDistance("D",0.0)
-        Repository.mMySharedPreferences.setLiter("L",0.0)
-    }
-
     fun removeLiter(){
         Repository.mMySharedPreferences.setLiter("L",0.0)
     }

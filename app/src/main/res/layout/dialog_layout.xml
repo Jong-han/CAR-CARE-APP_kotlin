@@ -12,11 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:background="@color/background_color"
         android:gravity="center"
         android:text="주유 정보 입력"
-        android:textColor="@color/black"
-        android:textSize="40dp" />
+        android:textSize="30dp" />
 
     <EditText
         android:id="@+id/dialog_totalOilPrice"
@@ -24,6 +22,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="주유한 금액을 입력해주세요."
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:inputType="number" />
 
     <EditText
@@ -32,5 +32,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="주유한 유가를 입력해주세요."
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:inputType="number" />
 </LinearLayout>

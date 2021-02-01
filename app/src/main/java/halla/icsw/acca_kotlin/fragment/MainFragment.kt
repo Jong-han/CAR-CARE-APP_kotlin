@@ -111,7 +111,11 @@ class MainFragment : Fragment(), View.OnClickListener {
 
         binding.checkboxEfficiency.setOnClickListener {
             if (binding.checkboxEfficiency.isChecked) {
-                makeDialog("연비 측정 시작", "\n연료가 적게 남은 상태일수록 정확도가 높아집니다.", binding.checkboxEfficiency)
+                makeDialog(
+                    "연비 측정 시작",
+                    "\n연료가 적게 남은 상태일수록 정확도가 높아집니다.\n\n연비 측정이 시작되면 측정을 종료할 수 없습니다.",
+                    binding.checkboxEfficiency
+                )
             } else
                 makeDialog(
                     "연비 측정 종료", "\n연비 측정 중!\n\n주의 : 연비에 대한 데이터가 모두 삭제됩니다",
@@ -233,10 +237,10 @@ class MainFragment : Fragment(), View.OnClickListener {
         dialogBuilder.setMessage(message)
             .setPositiveButton("입력") { dialogInterface, i ->
                 if (view.isChecked == false) {
-                    mMyViewModel.removeCheckData()
+                } else {
                     mMyViewModel.saveIsChecked(view.isChecked)
-                } else
-                    mMyViewModel.saveIsChecked(view.isChecked)
+                    binding.checkboxEfficiency.isEnabled = false
+                }
             }
             .setNegativeButton("취소") { dialogInterface, i ->
                 view.isChecked = !view.isChecked
