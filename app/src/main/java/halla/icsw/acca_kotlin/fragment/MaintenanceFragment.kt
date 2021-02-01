@@ -43,15 +43,6 @@ class MaintenanceFragment : Fragment(){
 
         setBtnEvent()
 
-//        mMyViewModel.engineOil.observe(viewLifecycleOwner, Observer {
-//            var str = it.remainingDistance.toString()
-//            binding.alertEngineOil.text = str
-//        })
-//
-//        mMyViewModel.engineOilColor.observe(viewLifecycleOwner, Observer {
-//            binding.alertEngineOil.
-//        })
-
     }
 
     private fun btnClickEvent(view: View, partName: String, partData: MutableLiveData<PartData>, partCycle: Cycle) {

@@ -38,15 +38,17 @@ class SMSReceiver : BroadcastReceiver() {
 
         val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        val isGPSEnabled: Boolean = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        val isNetworkEnabled: Boolean = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+//        val isGPSEnabled: Boolean = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+//        val isNetworkEnabled: Boolean = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
         if (intent.action.equals("android.provider.Telephony.SMS_RECEIVED")) {
-            when{
-                isGPSEnabled -> location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-                isNetworkEnabled -> location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-                else -> Toast.makeText(context, "Provider 비활성", Toast.LENGTH_SHORT).show()
-            }
+//            when{
+//                isGPSEnabled -> location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+//                isNetworkEnabled -> location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+//                else -> Toast.makeText(context, "Provider 비활성", Toast.LENGTH_SHORT).show()
+//            }
+
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 
 
             if (location != null) {
@@ -107,7 +109,10 @@ class SMSReceiver : BroadcastReceiver() {
                                     if (success) {
                                         for (i in response.body()?.result?.oil!!) {
                                             price = i.oilPrice
-                                            Repository.db.oilDAO().insert(OilEntity(today, price, totalPrice))
+                                            var isChecked = 0
+                                            if(Repository.mMySharedPreferences.getIsChecked("Check",false))
+                                                isChecked = 1
+                                            Repository.db.oilDAO().insert(OilEntity(today, price, totalPrice,isChecked))
                                             location = null
                                             break;
                                         }

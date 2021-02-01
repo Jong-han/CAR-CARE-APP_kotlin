@@ -73,4 +73,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     //레트로핏 로깅 인터셉터
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    //Ted Permission
+    implementation 'gun0912.ted:tedpermission:2.2.3'
 }

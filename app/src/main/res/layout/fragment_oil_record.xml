@@ -148,17 +148,50 @@
             </LinearLayout>
         </ScrollView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_self"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_layout"
+                android:text="셀프 입력"
+                android:layout_weight="1"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/btn_Efficiency"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_layout"
+                android:text="연비 확인"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/btn_back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_layout"
             android:text="HOME"
-            android:textSize="20dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/totalPrice"

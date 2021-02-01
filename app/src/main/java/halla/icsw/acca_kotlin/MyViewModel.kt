@@ -1,4 +1,4 @@
-    package halla.icsw.acca_kotlin
+package halla.icsw.acca_kotlin
 
 import android.Manifest
 import android.app.Application
@@ -7,14 +7,13 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.provider.Telephony
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import halla.icsw.acca_kotlin.DB.DriveEntity
 import halla.icsw.acca_kotlin.DB.MyDataBase
+import halla.icsw.acca_kotlin.DB.OilEntity
 import halla.icsw.acca_kotlin.DB.Repository
 import halla.icsw.acca_kotlin.Maintenance.Cycle
 import halla.icsw.acca_kotlin.Maintenance.PartData
@@ -50,24 +49,31 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     var location: Location? = null // 거리측정에 사용되는 위치정보
     var isStart: Boolean = false // 주행시작 버튼이 눌렸는지에 대한 플래그
 
-    private val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    var efficiency = MutableLiveData<EfficiencyData>()
+    var isStartCheck = MutableLiveData<Boolean>()
+
+    private val locationManager =
+        application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
     init {
         totalDistance.value = Repository.db.driveDAO().getTotalDistance()
         curDistance.value = 0.0
+        isStartCheck.value = Repository.mMySharedPreferences.getIsChecked("Check",false)
         refreshParts()
         setDriveInfo()
+//        getEfficiency()
     }
 
     // **** 주행 시작 버튼 **** //
     fun startDrive() {
         if (ActivityCompat.checkSelfPermission(
-                        getApplication(),
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                        getApplication(),
-                        Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED) {
+                getApplication(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                getApplication(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1f, this)
         isStart = true
@@ -81,6 +87,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
         var date = Date(timeNow)
         var sdf = SimpleDateFormat("yyyy-MM-dd")
         var now = sdf.format(date)
+        curDistance.value?.let { saveDistance(it) }
         curDistance.value?.let { DriveEntity(now, it) }?.let { Repository.db.driveDAO().insert(it) }
         totalDistance.value = Repository.db.driveDAO().getTotalDistance()
         curDistance.value = 0.0
@@ -90,7 +97,8 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     }
 
     private fun calculatePart2(partName: String, partCycle: Cycle): PartData? { // 남은 거리를 계산하는 메소드
-        var lastDistance = totalDistance.value?.minus(Repository.mMySharedPreferences.getDistance(partName, 0f))
+        var lastDistance =
+            totalDistance.value?.minus(Repository.mMySharedPreferences.getDistance(partName, 0f))
         return lastDistance?.let { partCycle.getPartData(it) }
     }
 
@@ -118,18 +126,18 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
         for (i in dataList) {
             if (cnt != dataList.size) {
                 str_date += (i.driveDate + "\n")
-                str_distance += (String.format("%.3f",i.distance) + " km\n")
+                str_distance += (String.format("%.3f", i.distance) + " km\n")
                 cnt++
             } else {
                 str_date += i.driveDate
-                str_distance += (String.format("%.3f",i.distance) + " km")
+                str_distance += (String.format("%.3f", i.distance) + " km")
                 cnt = 0
             }
         }
         driveDate.value = str_date
         driveDistance.value = str_distance
     }
-    
+
     // **** 위치 정보가 변경될 때마다 실행됨 **** //
     override fun onLocationChanged(newlocation: Location) {
         if (location != null) {
@@ -140,4 +148,51 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
         location = newlocation
     }
 
+    fun insertOilSelf(price: Int, totalPrice: Int) {
+        var timeNow = System.currentTimeMillis()
+        var date = Date(timeNow)
+        var sdf = SimpleDateFormat("yyyy-MM-dd")
+        var now = sdf.format(date)
+        var isChecked = 0
+        if (Repository.mMySharedPreferences.getIsChecked("Check",false))
+            isChecked = 1
+        Repository.db.oilDAO().insert(OilEntity(now, price, totalPrice, isChecked))
+    }
+
+    fun saveIsChecked(isCheck: Boolean) {
+        Repository.mMySharedPreferences.setIsChecked("Check",isCheck)
+        isStartCheck.value = Repository.mMySharedPreferences.getIsChecked("Check",false)
+    }
+
+    fun saveLiter(liter: Double) {
+        var curLiter = Repository.mMySharedPreferences.getLiter("L",0f)
+        var tempLiter = curLiter + liter
+        Repository.mMySharedPreferences.setLiter("L",tempLiter)
+    }
+
+    fun saveDistance(distance: Double) {
+        var curDistance = Repository.mMySharedPreferences.getAfterCheckDistance("D",0f)
+        var tempDistance = 0.0
+        if (Repository.mMySharedPreferences.getIsChecked("Check",false))
+            tempDistance = curDistance + distance
+        Repository.mMySharedPreferences.setAfterCheckDistance("D",tempDistance)
+    }
+
+    fun removeCheckData() {
+        Repository.mMySharedPreferences.setAfterCheckDistance("D",0.0)
+        Repository.mMySharedPreferences.setLiter("L",0.0)
+    }
+
+    fun removeLiter(){
+        Repository.mMySharedPreferences.setLiter("L",0.0)
+    }
+
+    fun getEfficiency() {
+        var distance = Repository.mMySharedPreferences.getAfterCheckDistance("D",0f)
+        var oil = Repository.mMySharedPreferences.getLiter("L",0f)
+        var efficiency = "주유 후 다시 확인해주세요!"
+        if (oil != 0.0)
+            efficiency = String.format("%.3f", distance / oil)
+        this.efficiency.value = EfficiencyData(distance, oil, efficiency)
+    }
 }
