@@ -56,8 +56,8 @@ class MainFragment : Fragment(), View.OnClickListener {
 
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         return binding.root
@@ -75,21 +75,21 @@ class MainFragment : Fragment(), View.OnClickListener {
 
             override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
                 Toast.makeText(context, "권한 허용을 하지 않으면 서비스를 이용할 수 없습니다.", Toast.LENGTH_SHORT)
-                        .show()
+                    .show()
             }
         }
 
         TedPermission.with(context)
-                .setPermissionListener(permissionlistener)
-                .setRationaleMessage("앱을 이용하기 위해서는 접근 권한이 필요합니다")
-                .setDeniedMessage("앱에서 요구하는 권한설정이 필요합니다...\n [설정] > [권한] 에서 사용으로 활성화해주세요.")
-                .setPermissions(
-                        ACCESS_FINE_LOCATION,
-                        ACCESS_COARSE_LOCATION,
-                        ACCESS_BACKGROUND_LOCATION,
-                        RECEIVE_SMS,
-                        READ_SMS
-                ).check()
+            .setPermissionListener(permissionlistener)
+            .setRationaleMessage("앱을 이용하기 위해서는 접근 권한이 필요합니다")
+            .setDeniedMessage("앱에서 요구하는 권한설정이 필요합니다...\n [설정] > [권한] 에서 사용으로 활성화해주세요.")
+            .setPermissions(
+                ACCESS_FINE_LOCATION,
+                ACCESS_COARSE_LOCATION,
+                ACCESS_BACKGROUND_LOCATION,
+                RECEIVE_SMS,
+                READ_SMS
+            ).check()
         //*********** PERMISSION CHECK ***********//
 
         navController = Navigation.findNavController(view)
@@ -111,7 +111,8 @@ class MainFragment : Fragment(), View.OnClickListener {
 
         //*********** CHECKBOX ***********//
 
-        binding.checkboxEfficiency.isEnabled = !Repository.mMySharedPreferences.getIsChecked("Check", false)
+        binding.checkboxEfficiency.isEnabled =
+            !Repository.mMySharedPreferences.getIsChecked("Check", false)
         mMyViewModel.isStartCheck.observe(viewLifecycleOwner, {
             binding.checkboxEfficiency.isChecked = it
         })
@@ -120,14 +121,14 @@ class MainFragment : Fragment(), View.OnClickListener {
         binding.checkboxEfficiency.setOnClickListener {
             if (binding.checkboxEfficiency.isChecked) {
                 makeDialog(
-                        "연비 측정 시작",
-                        "\n연료가 적게 남은 상태일수록 정확도가 높아집니다.\n\n연비 측정이 시작되면 측정을 종료할 수 없습니다.",
-                        binding.checkboxEfficiency
+                    "연비 측정 시작",
+                    "\n연료가 적게 남은 상태일수록 정확도가 높아집니다.\n\n연비 측정이 시작되면 측정을 종료할 수 없습니다.",
+                    binding.checkboxEfficiency
                 )
             } else
                 makeDialog(
-                        "연비 측정 종료", "\n연비 측정 중!\n\n주의 : 연비에 대한 데이터가 모두 삭제됩니다",
-                        binding.checkboxEfficiency
+                    "연비 측정 종료", "\n연비 측정 중!\n\n주의 : 연비에 대한 데이터가 모두 삭제됩니다",
+                    binding.checkboxEfficiency
                 )
         }
 
@@ -157,10 +158,8 @@ class MainFragment : Fragment(), View.OnClickListener {
                     makeToast("주행이 시작되지 않았습니다.")
             }
 
-            binding.btnDrive -> {
+            binding.btnDrive ->
                 navController.navigate(R.id.action_mainFragment_to_drivingRecordFragment)
-                mMyViewModel.setDriveInfo()
-            }
             binding.btnMaintenance -> {
                 navController.navigate(R.id.action_mainFragment_to_maintenanceFragment)
                 mMyViewModel.refreshParts()
@@ -204,23 +203,24 @@ class MainFragment : Fragment(), View.OnClickListener {
         intent.action = Intent.ACTION_MAIN
         intent.addCategory(Intent.CATEGORY_LAUNCHER)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent =
+            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val builder = context?.let { NotificationCompat.Builder(it, CHANNEL_ID) }
-                ?.setSmallIcon(R.mipmap.ic_launcher)
-                ?.setContentTitle("차량 정비 알림")
-                ?.setContentText("교체해야 하는 소모품이 있습니다!")
-                ?.setAutoCancel(true)
-                ?.setPriority(NotificationCompat.PRIORITY_HIGH)
-                ?.setFullScreenIntent(pendingIntent,true)
+            ?.setSmallIcon(R.mipmap.ic_launcher)
+            ?.setContentTitle("차량 정비 알림")
+            ?.setContentText("교체해야 하는 소모품이 있습니다!")
+            ?.setAutoCancel(true)
+            ?.setPriority(NotificationCompat.PRIORITY_HIGH)
+            ?.setFullScreenIntent(pendingIntent, true)
         if (builder != null) {
             createNotificationChannel(builder, notificationId)
         }
     }
 
     private fun createNotificationChannel(
-            builder: NotificationCompat.Builder,
-            notificationId: Int,
+        builder: NotificationCompat.Builder,
+        notificationId: Int,
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val descriptionText = "1번 채널입니다. "
@@ -233,14 +233,14 @@ class MainFragment : Fragment(), View.OnClickListener {
             channel.enableVibration(true)
             // Register the channel with the system
             val notificationManager: NotificationManager =
-                    activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+                activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
 
             notificationManager.notify(notificationId, builder.build())
 
         } else {
             val notificationManager: NotificationManager =
-                    activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+                activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.notify(notificationId, builder.build())
         }
     }
@@ -250,16 +250,16 @@ class MainFragment : Fragment(), View.OnClickListener {
         val dialogBuilder = AlertDialog.Builder(context)
         dialogBuilder.setTitle(title)
         dialogBuilder.setMessage(message)
-                .setPositiveButton("입력") { dialogInterface, i ->
-                    if (view.isChecked == false) {
-                    } else {
-                        mMyViewModel.saveIsChecked(view.isChecked)
-                        binding.checkboxEfficiency.isEnabled = false
-                    }
+            .setPositiveButton("입력") { dialogInterface, i ->
+                if (view.isChecked == false) {
+                } else {
+                    mMyViewModel.saveIsChecked(view.isChecked)
+                    binding.checkboxEfficiency.isEnabled = false
                 }
-                .setNegativeButton("취소") { dialogInterface, i ->
-                    view.isChecked = !view.isChecked
-                }
-                .show()
+            }
+            .setNegativeButton("취소") { dialogInterface, i ->
+                view.isChecked = !view.isChecked
+            }
+            .show()
     }
 }

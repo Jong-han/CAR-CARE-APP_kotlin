@@ -13,7 +13,7 @@ interface DriveDAO {
     fun insert(entity: DriveEntity)
 
     @Query("SELECT * FROM DriveRecord")
-    fun getAll(): List<DriveEntity>
+    fun getAll(): LiveData<List<DriveEntity>>
 
     @Query("SELECT SUM(distance) FROM DriveRecord")
     fun getTotalDistance(): Double
