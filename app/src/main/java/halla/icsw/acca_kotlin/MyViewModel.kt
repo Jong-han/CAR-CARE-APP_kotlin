@@ -49,19 +49,23 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     var location: Location? = null // 거리측정에 사용되는 위치정보
     var isStart: Boolean = false // 주행시작 버튼이 눌렸는지에 대한 플래그
 
+    // **** 연비측정을 위한 데이터 **** //
     var efficiency = MutableLiveData<EfficiencyData>()
     var isStartCheck = MutableLiveData<Boolean>()
+
+    // **** 초기값 세팅을 위한 데이터 **** //
+    var isExistUserData = MutableLiveData<Boolean>()
 
     private val locationManager =
         application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
     init {
-        totalDistance.value = Repository.db.driveDAO().getTotalDistance()
+        totalDistance.value = Repository.db.driveDAO().getTotalDistance() + Repository.mMySharedPreferences.getUserDistance()
         curDistance.value = 0.0
         isStartCheck.value = Repository.mMySharedPreferences.getIsChecked("Check",false)
         refreshParts()
         setDriveInfo()
-//        getEfficiency()
+        isExistUserData.value = Repository.mMySharedPreferences.getExistUserData()
     }
 
     // **** 주행 시작 버튼 **** //
@@ -81,15 +85,15 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
 
     // **** 주행 종료 버튼 **** //
     fun endDrive() {
-        totalDistance.value = curDistance.value?.let { totalDistance.value?.plus(it) }
+//        totalDistance.value = curDistance.value?.let { totalDistance.value?.plus(it) }
         locationManager.removeUpdates(this)
-        var timeNow = System.currentTimeMillis()
-        var date = Date(timeNow)
-        var sdf = SimpleDateFormat("yyyy-MM-dd")
-        var now = sdf.format(date)
+        val timeNow = System.currentTimeMillis()
+        val date = Date(timeNow)
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val now = sdf.format(date)
         curDistance.value?.let { saveDistance(it) }
         curDistance.value?.let { DriveEntity(now, it) }?.let { Repository.db.driveDAO().insert(it) }
-        totalDistance.value = Repository.db.driveDAO().getTotalDistance()
+        totalDistance.value = Repository.db.driveDAO().getTotalDistance() + Repository.mMySharedPreferences.getUserDistance()
         curDistance.value = 0.0
         location = null
         isStart = false
@@ -97,7 +101,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     }
 
     private fun calculatePart2(partName: String, partCycle: Cycle): PartData? { // 남은 거리를 계산하는 메소드
-        var lastDistance =
+        val lastDistance =
             totalDistance.value?.minus(Repository.mMySharedPreferences.getDistance(partName, 0f))
         return lastDistance?.let { partCycle.getPartData(it) }
     }
@@ -119,7 +123,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
 
     // **** 주행 정보 불러오기 **** //
     fun setDriveInfo() {
-        var dataList = Repository.db.driveDAO().getAll()
+        val dataList = Repository.db.driveDAO().getAll()
         var cnt = 1
         var str_date = ""
         var str_distance = ""
@@ -141,7 +145,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     // **** 위치 정보가 변경될 때마다 실행됨 **** //
     override fun onLocationChanged(newlocation: Location) {
         if (location != null) {
-            var tempDistance = round(newlocation.distanceTo(location).toDouble())
+            val tempDistance = round(newlocation.distanceTo(location).toDouble())
             curDistance.value = curDistance.value?.plus(tempDistance)   // 테스트용
 //            curDistance.value = curDistance.value?.plus(tempDistance.div(1000)) // 실제코드
         }
@@ -149,10 +153,10 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     }
 
     fun insertOilSelf(price: Int, totalPrice: Int) {
-        var timeNow = System.currentTimeMillis()
-        var date = Date(timeNow)
-        var sdf = SimpleDateFormat("yyyy-MM-dd")
-        var now = sdf.format(date)
+        val timeNow = System.currentTimeMillis()
+        val date = Date(timeNow)
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val now = sdf.format(date)
         var isChecked = 0
         if (Repository.mMySharedPreferences.getIsChecked("Check",false))
             isChecked = 1
@@ -165,13 +169,13 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     }
 
     fun saveLiter(liter: Double) {
-        var curLiter = Repository.mMySharedPreferences.getLiter("L",0f)
-        var tempLiter = curLiter + liter
+        val curLiter = Repository.mMySharedPreferences.getLiter("L",0f)
+        val tempLiter = curLiter + liter
         Repository.mMySharedPreferences.setLiter("L",tempLiter)
     }
 
     fun saveDistance(distance: Double) {
-        var curDistance = Repository.mMySharedPreferences.getAfterCheckDistance("D",0f)
+        val curDistance = Repository.mMySharedPreferences.getAfterCheckDistance("D",0f)
         var tempDistance = 0.0
         if (Repository.mMySharedPreferences.getIsChecked("Check",false))
             tempDistance = curDistance + distance
@@ -183,11 +187,27 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     }
 
     fun getEfficiency() {
-        var distance = Repository.mMySharedPreferences.getAfterCheckDistance("D",0f)
-        var oil = Repository.mMySharedPreferences.getLiter("L",0f)
+        val distance = Repository.mMySharedPreferences.getAfterCheckDistance("D",0f)
+        val oil = Repository.mMySharedPreferences.getLiter("L",0f)
         var efficiency = "주유 후 다시 확인해주세요!"
         if (oil != 0.0)
             efficiency = String.format("%.3f", distance / oil)
         this.efficiency.value = EfficiencyData(distance, oil, efficiency)
+    }
+
+    fun saveUserOilKind(oilKind: String){
+        Repository.mMySharedPreferences.setUserOilKind(oilKind)
+    }
+
+    fun saveUserDistance(distance: Double){
+        Repository.mMySharedPreferences.setUserDistance(distance)
+    }
+
+    fun saveUserPartsData(partName:String, distance: Double){
+        Repository.mMySharedPreferences.setDistance(partName,distance)
+    }
+
+    fun saveUserData(){
+        Repository.mMySharedPreferences.setExistUserData(true)
     }
 }

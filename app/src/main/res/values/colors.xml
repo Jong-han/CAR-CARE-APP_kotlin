@@ -19,4 +19,5 @@
     <color name = "background_color2">#949cdf</color>
     <color name = "background_color3">#eff8ff</color>
     <color name="main_background_color">#FAFAFA</color>
+    <color name="user_data_text">#848A8A</color>
 </resources>

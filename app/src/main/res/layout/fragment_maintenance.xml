@@ -97,7 +97,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="엔진오일"
+                        android:text="엔진 오일"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
@@ -134,7 +134,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="오토미션오일"
+                        android:text="오토미션 오일"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
@@ -171,7 +171,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="파워오일"
+                        android:text="파워 오일"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
@@ -208,7 +208,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="브레이크오일"
+                        android:text="브레이크 오일"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
@@ -245,7 +245,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="브레이크패드"
+                        android:text="브레이크 패드"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
@@ -282,7 +282,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="타이밍벨트"
+                        android:text="타이밍 벨트"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 

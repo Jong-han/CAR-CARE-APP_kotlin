@@ -27,7 +27,7 @@ class OilRecordFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_oil_record, container, false)
         return binding.root
     }
@@ -41,13 +41,13 @@ class OilRecordFragment : Fragment() {
         }
 
 
-        var dec = DecimalFormat("#,###")
-        Repository.db.oilDAO().getAll().observe(viewLifecycleOwner, Observer {
+        val dec = DecimalFormat("#,###")
+        Repository.db.oilDAO().getAll().observe(viewLifecycleOwner, {
             var temp_date = ""
             var temp_totalPrice = ""
             var temp_price = ""
             var temp_L = ""
-            var temp_L_Double = 0.0
+            var temp_L_Double: Double
             var cnt = 1
             for (i in it) {
                 if (cnt != it.size) {
@@ -81,7 +81,7 @@ class OilRecordFragment : Fragment() {
             binding.oilPrice.text = temp_price
             binding.oilL.text = temp_L
         })
-        Repository.db.oilDAO().getTotalPrice().observe(viewLifecycleOwner, Observer {
+        Repository.db.oilDAO().getTotalPrice().observe(viewLifecycleOwner, {
             if (it == null) {
                 binding.totalPrice.text = "총 주유가격 : 0 원"
             } else
@@ -89,17 +89,19 @@ class OilRecordFragment : Fragment() {
         })
 
         binding.btnSelf.setOnClickListener {
-            var dialogBuilder = AlertDialog.Builder(context)
-            var dialogView = layoutInflater.inflate(R.layout.dialog_layout, null)
-            var dialog_totalOilPrice = dialogView.findViewById<EditText>(R.id.dialog_totalOilPrice)
-            var dialog_OilPrice = dialogView.findViewById<EditText>(R.id.dialog_OilPrice)
+            val dialogBuilder = AlertDialog.Builder(context)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_layout, null)
+            val dialog_totalOilPrice = dialogView.findViewById<EditText>(R.id.dialog_totalOilPrice)
+            val dialog_OilPrice = dialogView.findViewById<EditText>(R.id.dialog_OilPrice)
             dialogBuilder.setView(dialogView)
                 .setPositiveButton("입력") { dialogInterface, i ->
-                    if (dialog_OilPrice.text.toString() != "" && dialog_totalOilPrice.text.toString() != "")
+                    if (dialog_OilPrice.text.toString() != "" && dialog_totalOilPrice.text.toString() != ""){
                         mMyViewModel.insertOilSelf(
                             dialog_OilPrice.text.toString().toInt(),
                             dialog_totalOilPrice.text.toString().toInt()
                         )
+                        mMyViewModel.removeLiter()
+                    }
                 }
                 .setNegativeButton("취소") { dialogInterface, i ->
                 }
@@ -111,8 +113,8 @@ class OilRecordFragment : Fragment() {
             var distance = 0.0
             var oil = 0.0
             var efficiency = ""
-            var message = ""
-            mMyViewModel.efficiency.observe(viewLifecycleOwner, Observer {
+            var message: String
+            mMyViewModel.efficiency.observe(viewLifecycleOwner, {
                 distance = it.distance
                 oil = it.oil
                 efficiency = it.efficiency
@@ -126,7 +128,7 @@ class OilRecordFragment : Fragment() {
                         oil
                     )
                 } L\n연비 : $efficiency km/L\n\n연비가 정확하지 않은가요?\n연비는 연료를 사용할 수록 정확해집니다."
-            var dialogBuilder = AlertDialog.Builder(context)
+            AlertDialog.Builder(context)
                 .setTitle("연비")
                 .setMessage(message)
                 .setPositiveButton("확인") { dialogInterface, i ->

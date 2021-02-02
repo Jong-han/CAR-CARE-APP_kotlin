@@ -8,21 +8,21 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="halla.icsw.acca_kotlin.fragment.MainFragment"
-        android:label="MainFragment" >
+        android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_maintenanceFragment"
             app:destination="@id/maintenanceFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_mainFragment_to_oilRecordFragment"
             app:destination="@id/oilRecordFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_mainFragment_to_drivingRecordFragment"
             app:destination="@id/drivingRecordFragment"
@@ -50,11 +50,59 @@
         android:id="@+id/loadingFragment"
         android:name="halla.icsw.acca_kotlin.fragment.LoadingFragment"
         android:label="fragment_loading"
-        tools:layout="@layout/fragment_loading" >
+        tools:layout="@layout/fragment_loading">
         <action
             android:id="@+id/action_loadingFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popUpTo="@id/loadingFragment"
-            app:popUpToInclusive="true" />
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_loadingFragment_to_userOilKindFragment"
+            app:destination="@id/userOilKindFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/userOilKindFragment"
+        android:name="halla.icsw.acca_kotlin.fragment.UserOilKindFragment"
+        android:label="fragment_user_oil_kind"
+        tools:layout="@layout/fragment_user_oil_kind">
+        <action
+            android:id="@+id/action_userOilKindFragment_to_userDistanceFragment"
+            app:destination="@id/userDistanceFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDistanceFragment"
+        android:name="halla.icsw.acca_kotlin.fragment.UserDistanceFragment"
+        android:label="fragment_user_distance"
+        tools:layout="@layout/fragment_user_distance">
+        <action
+            android:id="@+id/action_userDistanceFragment_to_userPartsFragment"
+            app:destination="@id/userPartsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/userPartsFragment"
+        android:name="halla.icsw.acca_kotlin.fragment.UserPartsFragment"
+        android:label="fragment_user_parts"
+        tools:layout="@layout/fragment_user_parts">
+        <action
+            android:id="@+id/action_userPartsFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>

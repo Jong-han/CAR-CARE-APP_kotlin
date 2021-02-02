@@ -58,11 +58,11 @@ class SMSReceiver : BroadcastReceiver() {
                 var price = 0 // 유가
                 var totalPrice = 0 // 주유 가격
                 var today = "" // 주유 날짜
-                var x = location!!.longitude
-                var y = location!!.latitude
-                var katec = GeoTrans.convert(GeoTrans.GEO, GeoTrans.KATEC, GeoTransPoint(x, y))
-                var katec_x = katec.x
-                var katec_y = katec.y
+                val x = location!!.longitude
+                val y = location!!.latitude
+                val katec = GeoTrans.convert(GeoTrans.GEO, GeoTrans.KATEC, GeoTransPoint(x, y))
+                val katec_x = katec.x
+                val katec_y = katec.y
 
                 val api = Retrofit_Interface.create()
 
@@ -83,38 +83,40 @@ class SMSReceiver : BroadcastReceiver() {
                         message += msgs[i]?.messageBody.toString()
                     }
 
-                    var isStation = message.contains("주유소") || message.contains("지에스칼텍스")
-                    var isCancel = message.contains("취소") || message.contains("거절")
+                    val isStation = message.contains("주유소") || message.contains("지에스칼텍스")
+                    val isCancel = message.contains("취소") || message.contains("거절")
                     if (isStation && !isCancel) {
 
-                        var timeNow = System.currentTimeMillis()
-                        var date = Date(timeNow)
-                        var sdf = SimpleDateFormat("yyyy-MM-dd")
+                        val timeNow = System.currentTimeMillis()
+                        val date = Date(timeNow)
+                        val sdf = SimpleDateFormat("yyyy-MM-dd")
                         today = sdf.format(date)
 
-                        var messageArray = message.split("\n", " ")
+                        val messageArray = message.split("\n", " ")
                         for (index in messageArray) {
                             if (index.contains(",")) {
-                                var temp_valueindex = index.slice(IntRange(0, index.indexOf("원")))
+                                val temp_valueindex = index.slice(IntRange(0, index.indexOf("원")))
                                 totalPrice = temp_valueindex.replace(",", "").replace("원", "").toInt()
                                 break
                             }
                         }
                     }
                     /// ***** OPINET API 호출 ***** ///
-                    api.getOilStationInfo("F792200616", katec_x, katec_y, 100, 2, "B027", "json")
+                    val oilKind = Repository.mMySharedPreferences.getUserOilKind()
+                    api.getOilStationInfo("F792200616", katec_x, katec_y, 100, 2, oilKind, "json")
                             .enqueue(object : Callback<Result> {
                                 override fun onResponse(call: Call<Result>, response: Response<Result>) {
-                                    var success = response.isSuccessful
-                                    if (success) {
-                                        for (i in response.body()?.result?.oil!!) {
-                                            price = i.oilPrice
-                                            var isChecked = 0
-                                            if(Repository.mMySharedPreferences.getIsChecked("Check",false))
-                                                isChecked = 1
-                                            Repository.db.oilDAO().insert(OilEntity(today, price, totalPrice,isChecked))
-                                            location = null
-                                            break;
+                                    if (response.isSuccessful) {
+                                        response.body()?.result?.oil.let {
+                                            for (i in it!!) {
+                                                price = i.oilPrice
+                                                var isChecked = 0
+                                                if (Repository.mMySharedPreferences.getIsChecked("Check", false))
+                                                    isChecked = 1
+                                                Repository.db.oilDAO().insert(OilEntity(today, price, totalPrice, isChecked))
+                                                location = null
+                                                break
+                                            }
                                         }
                                     }
                                 }
