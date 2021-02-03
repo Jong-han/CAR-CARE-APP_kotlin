@@ -17,7 +17,6 @@
         android:text="소모품을\n교체하셨나요?"
         android:textColor="@color/white"
         android:textSize="40dp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"

@@ -17,7 +17,6 @@
         android:text="얼마나\n주행하셨나요?"
         android:textColor="@color/white"
         android:textSize="40dp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
