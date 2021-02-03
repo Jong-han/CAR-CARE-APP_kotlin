@@ -121,8 +121,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     override fun onLocationChanged(newlocation: Location) {
         if (location != null) {
             val tempDistance = round(newlocation.distanceTo(location).toDouble())
-            curDistance.value = curDistance.value?.plus(tempDistance)   // 테스트용
-//            curDistance.value = curDistance.value?.plus(tempDistance.div(1000)) // 실제코드
+            curDistance.value = curDistance.value?.plus(tempDistance.div(1000))
         }
         location = newlocation
     }
