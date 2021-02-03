@@ -250,7 +250,7 @@ class MainFragment : Fragment(), View.OnClickListener {
         val dialogBuilder = AlertDialog.Builder(context)
         dialogBuilder.setTitle(title)
         dialogBuilder.setMessage(message)
-            .setPositiveButton("입력") { dialogInterface, i ->
+            .setPositiveButton("확인") { dialogInterface, i ->
                 if (view.isChecked == false) {
                 } else {
                     mMyViewModel.saveIsChecked(view.isChecked)

@@ -10,7 +10,7 @@ interface OilDAO {
     @Insert
     fun insert(entity: OilEntity)
 
-    @Query("SELECT * FROM OilRecord")
+    @Query("SELECT * FROM OilRecord ORDER BY id DESC")
     fun getAll() : LiveData<List<OilEntity>>
 
     @Query("SELECT SUM(totalPrice) FROM OilRecord")

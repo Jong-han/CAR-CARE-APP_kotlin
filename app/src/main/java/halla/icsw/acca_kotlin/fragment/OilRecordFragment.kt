@@ -44,24 +44,24 @@ class OilRecordFragment : Fragment() {
 
         val dec = DecimalFormat("#,###")
         Repository.db.oilDAO().getAll().observe(viewLifecycleOwner, {
-            var temp_date = ""
-            var temp_totalPrice = ""
-            var temp_price = ""
-            var temp_L = ""
+            var temp_date = "\n"
+            var temp_totalPrice = "\n"
+            var temp_price = "\n"
+            var temp_L = "\n"
             var temp_L_Double: Double
             var cnt = 1
             for (i in it) {
                 if (cnt != it.size) {
-                    temp_date += i.OilStation + "\n"
-                    temp_totalPrice += dec.format(i.totalPrice) + " 원\n"
-                    temp_price += dec.format(i.Price) + " 원\n"
+                    temp_date += i.OilStation + "\n\n"
+                    temp_totalPrice += dec.format(i.totalPrice) + " 원\n\n"
+                    temp_price += dec.format(i.Price) + " 원\n\n"
                     temp_L_Double = i.totalPrice.toDouble() / i.Price.toDouble()
                     if (i.isChecked == 1)
                         mMyViewModel.saveLiter(temp_L_Double)
                     temp_L += String.format(
                             "%.2f",
                             temp_L_Double
-                    ) + " L\n"
+                    ) + " L\n\n"
                     cnt++
                 } else {
                     temp_date += i.OilStation

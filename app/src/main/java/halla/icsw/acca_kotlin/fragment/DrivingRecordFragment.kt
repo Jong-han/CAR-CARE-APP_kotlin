@@ -44,12 +44,12 @@ class DrivingRecordFragment : Fragment() {
         Repository.db.driveDAO().getAll().observe(viewLifecycleOwner,{
             val dataList = it
             var cnt = 1
-            var str_date = ""
-            var str_distance = ""
+            var str_date = "\n"
+            var str_distance = "\n"
             for (i in dataList) {
                 if (cnt != dataList.size) {
-                    str_date += (i.driveDate + "\n")
-                    str_distance += (String.format("%.3f", i.distance) + " km\n")
+                    str_date += (i.driveDate + "\n\n")
+                    str_distance += (String.format("%.3f", i.distance) + " km\n\n")
                     cnt++
                 } else {
                     str_date += i.driveDate
