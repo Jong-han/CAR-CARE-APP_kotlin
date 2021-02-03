@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -25,8 +26,8 @@ class OilRecordFragment : Fragment() {
     val mMyViewModel: MyViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?,
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_oil_record, container, false)
         return binding.root
@@ -58,8 +59,8 @@ class OilRecordFragment : Fragment() {
                     if (i.isChecked == 1)
                         mMyViewModel.saveLiter(temp_L_Double)
                     temp_L += String.format(
-                        "%.2f",
-                        temp_L_Double
+                            "%.2f",
+                            temp_L_Double
                     ) + " L\n"
                     cnt++
                 } else {
@@ -70,8 +71,8 @@ class OilRecordFragment : Fragment() {
                     if (i.isChecked == 1)
                         mMyViewModel.saveLiter(temp_L_Double)
                     temp_L += String.format(
-                        "%.2f",
-                        temp_L_Double
+                            "%.2f",
+                            temp_L_Double
                     ) + " L"
                     cnt = 0
                 }
@@ -94,18 +95,18 @@ class OilRecordFragment : Fragment() {
             val dialog_totalOilPrice = dialogView.findViewById<EditText>(R.id.dialog_totalOilPrice)
             val dialog_OilPrice = dialogView.findViewById<EditText>(R.id.dialog_OilPrice)
             dialogBuilder.setView(dialogView)
-                .setPositiveButton("입력") { dialogInterface, i ->
-                    if (dialog_OilPrice.text.toString() != "" && dialog_totalOilPrice.text.toString() != ""){
-                        mMyViewModel.insertOilSelf(
-                            dialog_OilPrice.text.toString().toInt(),
-                            dialog_totalOilPrice.text.toString().toInt()
-                        )
-                        mMyViewModel.removeLiter()
+                    .setPositiveButton("입력") { dialogInterface, i ->
+                        if (dialog_OilPrice.text.toString() != "" && dialog_totalOilPrice.text.toString() != "") {
+                            mMyViewModel.insertOilSelf(
+                                    dialog_OilPrice.text.toString().toInt(),
+                                    dialog_totalOilPrice.text.toString().toInt()
+                            )
+                            mMyViewModel.removeLiter()
+                        }
                     }
-                }
-                .setNegativeButton("취소") { dialogInterface, i ->
-                }
-                .show()
+                    .setNegativeButton("취소") { dialogInterface, i ->
+                    }
+                    .show()
         }
 
         binding.btnEfficiency.setOnClickListener {
@@ -118,22 +119,23 @@ class OilRecordFragment : Fragment() {
                 distance = it.distance
                 oil = it.oil
                 efficiency = it.efficiency
-//                message = "연비 체크 중이 아니거나, 체크 후 주유를 하지 않으셨습니다. \n\n주유 후 다시 확인해주세요!"
             })
-//            if(oil != 0.0)
-            message =
-                "\n주행거리 : ${String.format("%.3f", distance)} km\n주유량 : ${
-                    String.format(
-                        "%.2f",
-                        oil
-                    )
-                } L\n연비 : $efficiency km/L\n\n연비가 정확하지 않은가요?\n연비는 연료를 사용할 수록 정확해집니다."
-            AlertDialog.Builder(context)
-                .setTitle("연비")
-                .setMessage(message)
-                .setPositiveButton("확인") { dialogInterface, i ->
-                }
-                .show()
+            if (oil != 0.0)
+                message =
+                        "\n주행거리 : ${String.format("%.3f", distance)} km\n주유량 : ${
+                            String.format(
+                                    "%.2f",
+                                    oil
+                            )
+                        } L\n연비 : $efficiency km/L\n\n연비가 정확하지 않은가요?\n연비는 연료를 사용할 수록 정확해집니다."
+            else
+                message = efficiency
+
+            val dialogView = layoutInflater.inflate(R.layout.dialog_layout_efficiency, null)
+            val efficiencyMessage = dialogView.findViewById<TextView>(R.id.dialog_efficiency)
+            efficiencyMessage.text = message
+            AlertDialog.Builder(context).setView(dialogView)
+                    .show()
         }
     }
 }

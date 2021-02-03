@@ -115,6 +115,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_layout"
+            android:fontFamily="@font/jua"
             android:text="HOME"
             android:textSize="20dp" />
 

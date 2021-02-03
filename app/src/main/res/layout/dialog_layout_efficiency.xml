@@ -17,25 +17,16 @@
         android:text="주유 정보 입력"
         android:textSize="30dp" />
 
-    <EditText
-        android:id="@+id/dialog_totalOilPrice"
+    <TextView
+        android:id="@+id/dialog_efficiency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="주유한 금액을 입력해주세요."
-        android:fontFamily="@font/jua"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:inputType="number" />
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/jua"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:text="연비가 보여집니다." />
 
-    <EditText
-        android:id="@+id/dialog_OilPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/jua"
-        android:ems="10"
-        android:hint="주유한 유가를 입력해주세요."
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:inputType="number" />
 </LinearLayout>

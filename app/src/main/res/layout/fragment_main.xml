@@ -37,10 +37,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#5E6675"
+                android:fontFamily="@font/jua"
                 android:text="연비 측정" />
 
             <Button
                 android:id="@+id/btn_start"
+                android:fontFamily="@font/jua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -51,6 +53,7 @@
 
             <Button
                 android:id="@+id/btn_end"
+                android:fontFamily="@font/jua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -61,6 +64,7 @@
 
             <Button
                 android:id="@+id/btn_drive"
+                android:fontFamily="@font/jua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -71,6 +75,7 @@
             <!--            android:onClick="@{() -> mainFragment.navController.navigate(mainFragment.ids[0])}"-->
             <Button
                 android:id="@+id/btn_oil"
+                android:fontFamily="@font/jua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -81,6 +86,7 @@
 
             <Button
                 android:id="@+id/btn_maintenance"
+                android:fontFamily="@font/jua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

@@ -52,12 +52,12 @@ class MaintenanceFragment : Fragment(){
     }
 
     private fun setBtnEvent() {
-        btnClickEvent(binding.btnChangeTimingBelt, "TimingBelt", mMyViewModel.timingBelt, mMyViewModel.timingBeltCycle)
-        btnClickEvent(binding.btnChangePowerOil, "PowerOil", mMyViewModel.powerOil, mMyViewModel.powerOilCycle)
+        btnClickEvent(binding.btnChangeBattery, "Battery", mMyViewModel.battery, mMyViewModel.batteryCycle)
+        btnClickEvent(binding.btnChangeAirConditioner, "AirConditioner", mMyViewModel.airConditioner, mMyViewModel.airConditionerCycle)
         btnClickEvent(binding.btnChangeEngineOil, "EngineOil", mMyViewModel.engineOil, mMyViewModel.engineOilCycle)
         btnClickEvent(binding.btnChangeBrakePad, "BrakePad", mMyViewModel.brakePad, mMyViewModel.brakePadCycle)
         btnClickEvent(binding.btnChangeBrakeOil, "BrakeOil", mMyViewModel.brakeOil, mMyViewModel.brakeOilCycle)
-        btnClickEvent(binding.btnChangeAutomissionOil, "AutoOil", mMyViewModel.autoOil, mMyViewModel.autoOilCycle)
+        btnClickEvent(binding.btnChangeTire, "Tire", mMyViewModel.tire, mMyViewModel.tireCycle)
     }
 
 

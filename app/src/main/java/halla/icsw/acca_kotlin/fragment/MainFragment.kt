@@ -102,12 +102,12 @@ class MainFragment : Fragment(), View.OnClickListener {
         binding.lifecycleOwner = this
         binding.viewModel = mMyViewModel
 
-        observeStatus(mMyViewModel.autoOil)
+        observeStatus(mMyViewModel.tire)
         observeStatus(mMyViewModel.brakeOil)
         observeStatus(mMyViewModel.brakePad)
         observeStatus(mMyViewModel.engineOil)
-        observeStatus(mMyViewModel.powerOil)
-        observeStatus(mMyViewModel.timingBelt)
+        observeStatus(mMyViewModel.airConditioner)
+        observeStatus(mMyViewModel.battery)
 
         //*********** CHECKBOX ***********//
 

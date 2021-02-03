@@ -29,19 +29,19 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
 
     // **** 부품교체까지 남은 거리에 대한 라이브데이터 **** //
     var engineOil = MutableLiveData<PartData>()
-    var autoOil = MutableLiveData<PartData>()
-    var powerOil = MutableLiveData<PartData>()
+    var tire = MutableLiveData<PartData>()
+    var airConditioner = MutableLiveData<PartData>()
     var brakeOil = MutableLiveData<PartData>()
     var brakePad = MutableLiveData<PartData>()
-    var timingBelt = MutableLiveData<PartData>()
+    var battery = MutableLiveData<PartData>()
 
     // **** 각 부품들에 대한 Cycle 객체 **** //
-    val engineOilCycle = Cycle(40000.0)
-    val autoOilCycle = Cycle(40000.0)
-    val powerOilCycle = Cycle(40000.0)
+    val engineOilCycle = Cycle(15000.0)
+    val tireCycle = Cycle(60000.0)
+    val airConditionerCycle = Cycle(15000.0)
     val brakeOilCycle = Cycle(40000.0)
-    val brakePadCycle = Cycle(20000.0)
-    val timingBeltCycle = Cycle(80000.0)
+    val brakePadCycle = Cycle(10000.0)
+    val batteryCycle = Cycle(60000.0)
 
     // **** 거리측정을 위한 데이터 **** //
     var location: Location? = null // 거리측정에 사용되는 위치정보
@@ -105,11 +105,11 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
 
     fun refreshParts() {
         engineOil.value = calculatePart2("EngineOil", engineOilCycle)
-        autoOil.value = calculatePart2("AutoOil", autoOilCycle)
-        powerOil.value = calculatePart2("PowerOil", powerOilCycle)
+        tire.value = calculatePart2("Tire", tireCycle)
+        airConditioner.value = calculatePart2("AirConditioner", airConditionerCycle)
         brakeOil.value = calculatePart2("BrakeOil", brakeOilCycle)
         brakePad.value = calculatePart2("BrakePad", brakePadCycle)
-        timingBelt.value = calculatePart2("TimingBelt", timingBeltCycle)
+        battery.value = calculatePart2("Battery", batteryCycle)
     }
 
     fun calculateCycle(partData: MutableLiveData<PartData>, partCycle: Cycle, partName: String) {
@@ -164,7 +164,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application), Loc
     fun getEfficiency() {
         val distance = Repository.mMySharedPreferences.getAfterCheckDistance("D",0f)
         val oil = Repository.mMySharedPreferences.getLiter("L",0f)
-        var efficiency = "주유 후 다시 확인해주세요!"
+        var efficiency = "연비 체크 중이 아니거나, 체크 후 주유를 하지 않으셨습니다. \n\n주유 후 다시 확인해주세요!"
         if (oil != 0.0)
             efficiency = String.format("%.3f", distance / oil)
         this.efficiency.value = EfficiencyData(distance, oil, efficiency)

@@ -36,6 +36,7 @@
 
         <RadioButton
             android:id="@+id/gasoline"
+            android:fontFamily="@font/jua"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -46,6 +47,7 @@
 
         <RadioButton
             android:id="@+id/diesel"
+            android:fontFamily="@font/jua"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -63,6 +65,7 @@
         android:layout_marginBottom="40dp"
         android:layout_weight="1"
         android:text="NEXT"
+        android:fontFamily="@font/jua"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.877"

@@ -34,7 +34,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:text="안전을 위해 꼭 교체하세요!!"
+            android:text="안전을 위해 꼭 교체 하세요!!"
             android:textColor="#5E6675"
             android:textSize="20sp" />
 
@@ -98,6 +98,7 @@
                         android:background="@color/background_color"
                         android:gravity="center"
                         android:text="엔진 오일"
+                        android:tooltipText="15,000km 또는 1년 마다 교체하세요!"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
@@ -113,6 +114,7 @@
 
                     <Button
                         android:id="@+id/btn_changeEngineOil"
+                        android:fontFamily="@font/jua"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:layout_height="match_parent"
@@ -134,22 +136,24 @@
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="오토미션 오일"
+                        android:text="타이어"
+                        android:tooltipText="60,000km 또는 3년 마다 교체하세요!"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/alertAutomissionOil"
+                        android:id="@+id/alertTire"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{Double.toString(viewModel.autoOil.remainingDistance)+ ` km`}"
-                        android:textColor="@{(viewModel.autoOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.autoOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
+                        android:text="@{Double.toString(viewModel.tire.remainingDistance)+ ` km`}"
+                        android:textColor="@{(viewModel.tire.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.tire.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
                     <Button
-                        android:id="@+id/btn_changeAutomissionOil"
+                        android:id="@+id/btn_changeTire"
+                        android:fontFamily="@font/jua"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:layout_height="match_parent"
@@ -167,26 +171,28 @@
                     <TextView
                         android:id="@+id/textView5"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="파워 오일"
+                        android:text="에어컨 필터"
+                        android:tooltipText="15,000km 마다 교체하세요!"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/alertPowerOil"
+                        android:id="@+id/alertAirConditioner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{Double.toString(viewModel.powerOil.remainingDistance)+ ` km`}"
-                        android:textColor="@{(viewModel.powerOil.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.powerOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
+                        android:text="@{Double.toString(viewModel.airConditioner.remainingDistance)+ ` km`}"
+                        android:textColor="@{(viewModel.airConditioner.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.airConditioner.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
                     <Button
-                        android:id="@+id/btn_changePowerOil"
+                        android:id="@+id/btn_changeAirConditioner"
+                        android:fontFamily="@font/jua"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:layout_height="match_parent"
@@ -209,6 +215,7 @@
                         android:background="@color/background_color"
                         android:gravity="center"
                         android:text="브레이크 오일"
+                        android:tooltipText="40,000km 또는 수분량에 따라 교체하세요!"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
@@ -225,6 +232,7 @@
                     <Button
                         android:id="@+id/btn_changeBrakeOil"
                         android:layout_width="match_parent"
+                        android:fontFamily="@font/jua"
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
@@ -246,6 +254,7 @@
                         android:background="@color/background_color"
                         android:gravity="center"
                         android:text="브레이크 패드"
+                        android:tooltipText="10,000km 또는 3mm 이하일 때 교체하세요!"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
@@ -263,6 +272,7 @@
                         android:id="@+id/btn_changeBrakePad"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
+                        android:fontFamily="@font/jua"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -282,24 +292,26 @@
                         android:layout_height="match_parent"
                         android:background="@color/background_color"
                         android:gravity="center"
-                        android:text="타이밍 벨트"
+                        android:text="배터리"
+                        android:tooltipText="60,000km 또는 3년 마다 교체하세요!"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/alertTimingBelt"
+                        android:id="@+id/alertBattery"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@{Double.toString(viewModel.timingBelt.remainingDistance)+ ` km`}"
-                        android:textColor="@{(viewModel.timingBelt.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.engineOil.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
+                        android:text="@{Double.toString(viewModel.battery.remainingDistance)+ ` km`}"
+                        android:textColor="@{(viewModel.battery.status == 0) ? Color.parseColor(`#F0503B`): (viewModel.battery.status == 1) ? Color.parseColor(`#F0BE59`): Color.parseColor(`#557CF0`) }"
                         android:textSize="20sp" />
 
                     <Button
-                        android:id="@+id/btn_changeTimingBelt"
+                        android:id="@+id/btn_changeBattery"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
+                        android:fontFamily="@font/jua"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -318,6 +330,18 @@
             android:orientation="vertical"
             android:gravity="bottom">
 
+            <TextView
+                android:id="@+id/asdfadfggth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="소모품을 길게 터치하면 교체 정보가 나타납니다."
+                android:textColor="#5E6675"
+                android:textSize="20sp" />
+
             <Button
                 android:id="@+id/btn_back"
                 android:layout_width="match_parent"
@@ -327,6 +351,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/button_layout"
+                android:fontFamily="@font/jua"
                 android:text="HOME"
                 android:textSize="20dp" />
 
