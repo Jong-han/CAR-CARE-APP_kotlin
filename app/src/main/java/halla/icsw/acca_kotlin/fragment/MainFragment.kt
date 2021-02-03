@@ -207,7 +207,7 @@ class MainFragment : Fragment(), View.OnClickListener {
             PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val builder = context?.let { NotificationCompat.Builder(it, CHANNEL_ID) }
-            ?.setSmallIcon(R.mipmap.ic_launcher)
+            ?.setSmallIcon(R.mipmap.ic_acca)
             ?.setContentTitle("차량 정비 알림")
             ?.setContentText("교체해야 하는 소모품이 있습니다!")
             ?.setAutoCancel(true)
